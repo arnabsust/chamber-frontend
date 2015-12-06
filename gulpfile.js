@@ -10,7 +10,6 @@ var buffer = require('vinyl-buffer');
 
 gulp.task('connect', function() {
     connect.server({
-        root: 'public',
         port: 4000
     });
 });

@@ -1,3 +1,16 @@
-<div ng-repeat="p in patients">
-    {{p.FirstName}}
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient Name</th>
+            <th>Email</th>
+            <th>NID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="p in patients">
+            <th>{{p.FirstName}} {{p.LastName}}</th>
+            <th>{{p.Email}}</th>
+            <th>{{p.NID}}</th>
+        </tr>
+    </tbody>
+</table>

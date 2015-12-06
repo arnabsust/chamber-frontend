@@ -5,7 +5,7 @@ exports = angular.module('patient.routes', ['patient.services', 'patient.control
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $stateProvider.state('patient', {
             url: '/patient',
-            templateUrl: 'views/patient/index.html',
+            templateUrl: 'public/views/patient/index.html',
             controller: 'PatientCtrl',
             resolve: {
                 patients: ['PatientService', function(PatientService) {

@@ -8,9 +8,9 @@ exports = angular.module('patient.routes', ['patient.services', 'patient.control
             templateUrl: 'views/patient/index.html',
             controller: 'PatientCtrl',
             resolve: {
-                patients: function(PatientService) {
+                patients: ['PatientService', function(PatientService) {
                     return PatientService.query();
-                }
+                }]
             }
         });
     }])

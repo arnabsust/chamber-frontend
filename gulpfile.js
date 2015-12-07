@@ -8,8 +8,11 @@ var uglify = require('gulp-uglify');
 
 var buffer = require('vinyl-buffer');
 
+var templateCache = require('gulp-angular-templatecache');
+
 gulp.task('connect', function() {
     connect.server({
+        root: 'app/',
         port: 4000
     });
 });
@@ -17,14 +20,24 @@ gulp.task('connect', function() {
 gulp.task('browserify', function() {
     return browserify(['./app/app.js'])
         .bundle()
-        .pipe(source('app.js'))
+        .pipe(source('bundled.js'))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(gulp.dest('./public/js/'));
+        .pipe(gulp.dest('./app/'));
 });
 
-gulp.task('watch', function() {
+gulp.task('cachingTemplates', function() {
+    return gulp.src('app/components/**/**/*.html')
+        .pipe(templateCache({
+            module: 'templatesCache',
+            standalone: true,
+            root: 'templates/'
+        }))
+        .pipe(gulp.dest('app/templates'));
+});
+
+gulp.task('watchJS', function() {
     gulp.watch('app/**/*.js', ['browserify']);
 });
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['connect', 'watchJS']);

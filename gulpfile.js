@@ -40,4 +40,8 @@ gulp.task('watchJS', function() {
     gulp.watch('app/**/*.js', ['browserify']);
 });
 
-gulp.task('default', ['connect', 'watchJS']);
+gulp.task('watchTemplate', function() {
+    gulp.watch('app/components/**/**/*.html', ['cachingTemplates']);
+});
+
+gulp.task('default', ['connect', 'cachingTemplates', 'browserify']);
